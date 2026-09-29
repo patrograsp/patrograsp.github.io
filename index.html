@@ -1,73 +1,1194 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>PaTRO Grasp</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>PaTRO-Grasp</title>
+
+
+  <link
+    href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
+
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+  >
+
   <link rel="stylesheet" href="./static/css/index.css">
+
   <link rel="icon" href="./static/images/favicon.svg">
 
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script defer src="./static/js/fontawesome.all.min.js"></script>
+
   <script src="./static/js/bulma-carousel.min.js"></script>
+
   <script src="./static/js/bulma-slider.min.js"></script>
+
   <script src="./static/js/index.js"></script>
+
 
   <!-- MathJax -->
   <script>
     window.MathJax = {
-      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
+      tex: {
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ]
+      }
     };
   </script>
-  <script id="MathJax-script" async
+
+  <script
+    id="MathJax-script"
+    async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
 
+
   <!-- visitor statistics -->
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script
+    async
+    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+  </script>
+
 
   <!-- model-viewer -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+  <script
+    type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js">
+  </script>
+
 </head>
+
+
 <body>
 
+
+<!-- ========================================================= -->
+<!-- Title -->
+<!-- ========================================================= -->
+
 <section class="hero">
+
   <div class="hero-body">
+
     <div class="container is-max-desktop">
+
       <div class="columns is-centered">
+
         <div class="column has-text-centered">
+
           <h1 class="title is-1 publication-title">
-            PaTRO-Grasp: Zero-Shot Cross-Embodiment Dexterous Grasping with Surface Patches
+
+            PaTRO-Grasp:
+            Zero-Shot Cross-Embodiment Dexterous Grasping
+            with Surface Patches
+
           </h1>
-          
+
+
           <div class="column has-text-centered">
+
             <div class="publication-links">
+
               <!-- Appendix Link. -->
+
+              <!--
               <span class="link-block">
-                <a href="./static/assets/appendix.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
+
+                <a
+                  href="./static/assets/appendix.pdf"
+                  class="external-link button is-normal is-rounded is-dark">
+
                   <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-pdf"></i>
                   </span>
-                  <span>Appendix</span>
+
+                  <span>Code</span>
+
                 </a>
+
               </span>
+              -->
+
             </div>
 
           </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
+
+
+<!-- ========================================================= -->
+<!-- Teaser Video -->
+<!-- ========================================================= -->
+
+<!--
+<section class="hero teaser">
+
+  <div class="container is-max-desktop">
+
+    <div class="hero-body">
+
+      <video
+        id="teaser"
+        loop
+        playsinline
+        height="100%"
+        controls
+        class="video-with-border">
+
+        <source
+          src="./static/assets/teaser.mp4"
+          type="video/mp4">
+
+      </video>
+
+    </div>
+
+  </div>
+
+</section>
+-->
+
+
+
+<!-- ========================================================= -->
+<!-- Teaser Image -->
+<!-- ========================================================= -->
+
+<section class="teaser image">
+
+  <div class="container is-max-desktop">
+
+    <div class="hero-body">
+
+      <img
+        src="./static/assets/teaser.png"
+        alt="Teaser Image"
+        style="width:100%; height:auto;"
+      >
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- Abstract -->
+<!-- ========================================================= -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3">
+          Abstract
+        </h2>
+
+
+        <div class="content has-text-justified">
+
+          <p>
+
+            The growing diversity of dexterous hands calls for
+            grasping policies that generalize to unseen hands.
+
+            However, zero-shot transfer remains challenging due to
+            substantial differences in action spaces across embodiments.
+
+            To tackle this challenge, we propose PaTRO-Grasp,
+            a universal policy built on surface-patch representations
+            for arbitrary dexterous hands.
+
+            PaTRO-Grasp adopts a two-stage training paradigm to establish
+            cross-hand correspondence in a shared high-dimensional
+            feature space, enabling zero-shot policy transfer to novel
+            hand embodiments for grasp synthesis in cluttered environments.
+
+            Across novel hands spanning three-finger grippers to four-
+            and five-finger dexterous hands, PaTRO-Grasp achieves an
+            average success rate of
+
+            <strong>84.3%</strong>,
+
+            demonstrating strong zero-shot generalization across
+            diverse hand morphologies.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- Method Overview -->
+<!-- ========================================================= -->
+
+<section class="pipeline">
+
+  <h2 class="title is-3 has-text-centered">
+    Method Overview
+  </h2>
+
+
+  <div class="container is-max-desktop">
+
+    <div
+      class="hero-body"
+      style="
+        padding-top: 10px;
+        padding-bottom: 10px;
+      "
+    >
+
+      <img
+        src="./static/assets/pipeline.png"
+        alt="Teaser Image"
+        style="
+          width:100%;
+          height:auto;
+        "
+      >
+
+
+      <p>
+
+        <strong>
+          Overview of PaTRO-Grasp:
+        </strong>
+
+        PaTRO-Grasp employs a dual-branch diffusion framework
+        for zero-shot cross-embodiment grasp synthesis,
+        requiring only lightweight patch-embedding optimization
+        for novel hands deployment without additional training.
+
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- Simulation Results -->
+<!-- ========================================================= -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+
+    <div class="columns is-centered">
+
+      <div class="column">
+
+        <h2 class="title is-3 has-text-centered">
+
+          Zero-Shot in Simulation
+
+        </h2>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Mesh ID control -->
+
+    <div class="mesh-control">
+
+      <div class="mesh-label">
+
+        Grasp Example:
+        <span id="mesh-id-label">0</span>
+
+      </div>
+
+
+      <input
+        type="range"
+        id="mesh-id-slider"
+        min="0"
+        max="4"
+        value="0"
+        step="1"
+      >
+
+    </div>
+
+
+
+    <!-- Hand viewers -->
+
+    <div
+      class="hand-grid"
+      id="hand-grid">
+    </div>
+
+
+  </div>
+
+</section>
+
+
+
+<!-- ========================================================= -->
+<!-- Simulation Result Style -->
+<!-- ========================================================= -->
+
+<style>
+
+  .mesh-control {
+
+    width: 100%;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+
+  }
+
+
+  .mesh-label {
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+  }
+
+
+  #mesh-id-slider {
+
+    display: block;
+
+    width: 300px;
+
+    margin: 12px auto 0 auto;
+
+  }
+
+
+
+  /*
+   * Three hands in one row
+   */
+
+  .hand-grid {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 26px;
+
+    justify-items: center;
+
+    align-items: start;
+
+    width: 100%;
+
+  }
+
+
+
+  .hand-card {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+  }
+
+
+
+  /*
+   * 3D viewer
+   */
+
+  .hand-viewer {
+
+    display: block;
+
+    width: 100%;
+
+    max-width: 280px;
+
+    height: 280px;
+
+
+    border: 2px solid #8ac7ef;
+
+    border-radius: 14px;
+
+
+    background-color: #eeeeee;
+
+
+    overflow: hidden;
+
+  }
+
+
+
+  .hand-name {
+
+    margin-top: 10px;
+
+    margin-bottom: 0;
+
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+  }
+
+
+
+  /*
+   * Status text:
+   *
+   * useful for debugging whether
+   * the GLB actually loaded.
+   */
+
+  .mesh-status {
+
+    height: 18px;
+
+    margin-top: 3px;
+
+
+    font-size: 12px;
+
+    color: #888;
+
+  }
+
+
+
+  .mesh-status.success {
+
+    color: #4b9560;
+
+  }
+
+
+
+  .mesh-status.error {
+
+    color: #cf5353;
+
+  }
+
+
+
+  /*
+   * Responsive layout
+   */
+
+  @media screen and (max-width: 900px) {
+
+    .hand-grid {
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    }
+
+  }
+
+
+
+  @media screen and (max-width: 520px) {
+
+    .hand-grid {
+
+      grid-template-columns:
+        repeat(1, minmax(0, 1fr));
+
+    }
+
+
+    .hand-viewer {
+
+      max-width: 320px;
+
+      height: 320px;
+
+    }
+
+  }
+
+</style>
+
+
+
+<!-- ========================================================= -->
+<!-- Simulation Result JavaScript -->
+<!-- ========================================================= -->
+
+<script>
+
+
+  /*
+   * Expected directory:
+   *
+   *
+   * static/
+   * └── assets/
+   *     └── glb/
+   *
+   *         ├── xhand/
+   *         │   ├── 0.glb
+   *         │   ├── 1.glb
+   *         │   ├── 2.glb
+   *         │   ├── 3.glb
+   *         │   └── 4.glb
+   *
+   *         ├── wuji_hand/
+   *         │   ├── 0.glb
+   *         │   ├── 1.glb
+   *         │   ├── 2.glb
+   *         │   ├── 3.glb
+   *         │   └── 4.glb
+   *
+   *         └── dclaw_gripper/
+   *             ├── 0.glb
+   *             ├── 1.glb
+   *             ├── 2.glb
+   *             ├── 3.glb
+   *             └── 4.glb
+   *
+   */
+
+
+  const hands = [
+
+    {
+
+      folder: "xhand",
+
+      name: "XHand",
+
+      alt: "XHand grasp"
+
+    },
+
+
+    {
+
+      folder: "wuji_hand",
+
+      name: "Wuji Hand",
+
+      alt: "Wuji Hand grasp"
+
+    },
+
+
+    {
+
+      folder: "dclaw_gripper",
+
+      name: "DClaw",
+
+      alt: "DClaw grasp"
+
+    }
+
+  ];
+
+
+
+  const NUM_MESHES = 5;
+
+
+
+  const meshSlider =
+    document.getElementById(
+      "mesh-id-slider"
+    );
+
+
+  const meshLabel =
+    document.getElementById(
+      "mesh-id-label"
+    );
+
+
+  const handGrid =
+    document.getElementById(
+      "hand-grid"
+    );
+
+
+
+  meshSlider.max =
+    NUM_MESHES - 1;
+
+
+
+  /*
+   * Generate GLB path.
+   *
+   * Example:
+   *
+   * ./static/assets/glb/xhand/0.glb
+   */
+
+  function getMeshPath(
+    folder,
+    meshId
+  ) {
+
+    return (
+      `./static/assets/glb/${folder}/${meshId}.glb`
+    );
+
+  }
+
+
+
+  /*
+   * Create one card
+   */
+
+  function createHandCard(
+    hand,
+    meshId
+  ) {
+
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.className =
+      "hand-card";
+
+
+
+    /*
+     * model-viewer
+     */
+
+    const viewer =
+      document.createElement(
+        "model-viewer"
+      );
+
+
+    viewer.className =
+      "hand-viewer";
+
+
+    viewer.dataset.folder =
+      hand.folder;
+
+
+    viewer.dataset.meshId =
+      meshId;
+
+
+
+    /*
+     * Initial mesh path
+     */
+
+    const meshPath =
+      getMeshPath(
+        hand.folder,
+        meshId
+      );
+
+
+
+    console.log(
+      "Loading GLB:",
+      meshPath
+    );
+
+
+
+    viewer.src =
+      meshPath;
+
+
+    viewer.alt =
+      hand.alt;
+
+
+
+    /*
+     * IMPORTANT
+     *
+     * Do NOT manually specify
+     *
+     * camera-target="0m 0m 0m"
+     *
+     * or a fixed camera orbit here.
+     *
+     * This lets model-viewer determine
+     * the bounding box automatically.
+     */
+
+    viewer.setAttribute(
+      "camera-controls",
+      ""
+    );
+
+
+    viewer.setAttribute(
+      "auto-rotate",
+      ""
+    );
+
+
+    viewer.setAttribute(
+      "interaction-prompt",
+      "none"
+    );
+
+
+    viewer.setAttribute(
+      "shadow-intensity",
+      "1"
+    );
+
+
+    viewer.setAttribute(
+      "exposure",
+      "1"
+    );
+
+
+    viewer.setAttribute(
+      "loading",
+      "eager"
+    );
+
+
+
+    /*
+     * Hand name
+     */
+
+    const name =
+      document.createElement(
+        "div"
+      );
+
+
+    name.className =
+      "hand-name";
+
+
+    name.textContent =
+      hand.name;
+
+
+
+    /*
+     * Loading status
+     */
+
+    const status =
+      document.createElement(
+        "div"
+      );
+
+
+    status.className =
+      "mesh-status";
+
+
+    status.textContent =
+      "Loading...";
+
+
+
+    /*
+     * Successful loading
+     */
+
+    viewer.addEventListener(
+      "load",
+      () => {
+
+
+        const currentMeshId =
+          viewer.dataset.meshId;
+
+
+        console.log(
+          "Successfully loaded:",
+          viewer.src
+        );
+
+
+        status.textContent =
+          `Mesh ${currentMeshId} loaded`;
+
+
+        status.className =
+          "mesh-status success";
+
+
+      }
+    );
+
+
+
+    /*
+     * Loading failure
+     */
+
+    viewer.addEventListener(
+      "error",
+      (event) => {
+
+
+        console.error(
+          "Failed to load:",
+          viewer.src,
+          event
+        );
+
+
+        status.textContent =
+          "Failed to load GLB";
+
+
+        status.className =
+          "mesh-status error";
+
+
+      }
+    );
+
+
+
+    /*
+     * Add components
+     */
+
+    card.appendChild(
+      viewer
+    );
+
+
+    card.appendChild(
+      name
+    );
+
+
+    card.appendChild(
+      status
+    );
+
+
+
+    return card;
+
+  }
+
+
+
+  /*
+   * Create all viewers
+   */
+
+  function createHandCards(
+    meshId = 0
+  ) {
+
+
+    handGrid.innerHTML =
+      "";
+
+
+
+    hands.forEach(
+      (hand) => {
+
+
+        const card =
+          createHandCard(
+            hand,
+            meshId
+          );
+
+
+        handGrid.appendChild(
+          card
+        );
+
+
+      }
+    );
+
+  }
+
+
+
+  /*
+   * Switch all hands
+   * to the same mesh ID
+   */
+
+  function updateMesh(
+    meshId
+  ) {
+
+
+    meshLabel.textContent =
+      meshId;
+
+
+
+    const viewers =
+      document.querySelectorAll(
+        ".hand-viewer"
+      );
+
+
+
+    viewers.forEach(
+      (viewer) => {
+
+
+        const folder =
+          viewer.dataset.folder;
+
+
+
+        const newPath =
+          getMeshPath(
+            folder,
+            meshId
+          );
+
+
+
+        viewer.dataset.meshId =
+          meshId;
+
+
+
+        console.log(
+          "Switching GLB:",
+          newPath
+        );
+
+
+
+        const card =
+          viewer.parentElement;
+
+
+        const status =
+          card.querySelector(
+            ".mesh-status"
+          );
+
+
+
+        status.textContent =
+          "Loading...";
+
+
+        status.className =
+          "mesh-status";
+
+
+
+        /*
+         * Change the GLB
+         */
+
+        viewer.src =
+          newPath;
+
+
+      }
+    );
+
+  }
+
+
+
+  /*
+   * Initial render
+   */
+
+  createHandCards(
+    0
+  );
+
+
+
+  /*
+   * Slider callback
+   */
+
+  meshSlider.addEventListener(
+    "input",
+    function () {
+
+
+      const meshId =
+        Number(
+          this.value
+        );
+
+
+      updateMesh(
+        meshId
+      );
+
+
+    }
+  );
+
+
+</script>
+
+
+
+<!-- ========================================================= -->
+<!-- Real World Results -->
+<!-- ========================================================= -->
+
+<section class="section">
+
+  <div class="container is-max-desktop">
+
+
+    <!-- Real World. -->
+
+    <div class="columns is-centered has-text-centered">
+
+      <div class="column is-four-fifths">
+
+        <h2 class="title is-3">
+
+          Real-world Results
+
+        </h2>
+
+
+        <div class="content has-text-centered">
+
+
+          <h3
+            style="
+              margin-bottom: 8px;
+              font-size: 1.2rem;
+              color: #444;
+            "
+          >
+
+            XHand Zero-Shot: 82%
+
+          </h3>
+
+
+          <div
+            style="
+              margin-bottom: 20px;
+            "
+          >
+
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              style="
+                width:100%;
+                height:auto;
+              "
+            >
+
+              <source
+                src="./static/assets/xhand.mp4"
+                type="video/mp4"
+              >
+
+            </video>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!--/ Real World. -->
+
+
+  </div>
+
+</section>
+
+
 </body>
+
 </html>
